@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>2bcbfe38-9e61-465b-8f64-d0da16b9001f</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>WordCount</ProviderName>
+  <DefaultLocale>fr-FR</DefaultLocale>
+  <DisplayName DefaultValue="WordCount Goals"/>
+  <Description DefaultValue="Suivi des objectifs quotidiens, hebdomadaires et projet dans Word."/>
+  <SupportUrl DefaultValue="https://localhost:3000/support"/>
+  <AppDomains>
+    <AppDomain>https://localhost:3000</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document"/>
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://localhost:3000/src/taskpane/index.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="FileNameRule" Match="*.docx"/>
+  </Rule>
+  <VersionOverrides xsi:type="ov:VersionOverrides" Version="1.0">
+    <ov:Hosts>
+      <ov:Host xsi:type="ov:Document">
+        <ov:DesktopFormFactor>
+          <ov:FunctionFile resid="residFunctionsUrl" />
+          <ov:ExtensionPoint xsi:type="ov:Taskpane">
+            <ov:SourceLocation resid="residTaskPaneUrl"/>
+            <ov:Title resid="residTaskPaneTitle"/>
+            <ov:SupportUrl resid="residSupportUrl"/>
+          </ov:ExtensionPoint>
+          <ov:ExtensionPoint xsi:type="ov:PrimaryCommandSurface">
+            <ov:OfficeTab id="TabHome">
+              <ov:Group id="residWordCountGroup" label="Suivi des objectifs">
+                <ov:Control xsi:type="ov:Button" id="residOpenPaneButton">
+                  <ov:Label resid="residTaskPaneButtonLabel"/>
+                  <ov:Supertip>
+                    <ov:Title resid="residTaskPaneTitle"/>
+                    <ov:Description resid="residTaskPaneDescription"/>
+                  </ov:Supertip>
+                  <ov:Action xsi:type="ov:ShowTaskpane">
+                    <ov:SourceLocation resid="residTaskPaneUrl"/>
+                  </ov:Action>
+                </ov:Control>
+              </ov:Group>
+            </ov:OfficeTab>
+          </ov:ExtensionPoint>
+        </ov:DesktopFormFactor>
+      </ov:Host>
+    </ov:Hosts>
+    <ov:Resources>
+      <ov:bt:Urls>
+        <ov:bt:Url id="residTaskPaneUrl" DefaultValue="https://localhost:3000/src/taskpane/index.html"/>
+        <ov:bt:Url id="residSupportUrl" DefaultValue="https://localhost:3000/support"/>
+        <ov:bt:Url id="residFunctionsUrl" DefaultValue="https://localhost:3000/src/commands/commands.html"/>
+      </ov:bt:Urls>
+      <ov:bt:ShortStrings>
+        <ov:bt:String id="residTaskPaneTitle" DefaultValue="Objectifs d'écriture"/>
+        <ov:bt:String id="residTaskPaneButtonLabel" DefaultValue="WordCount"/>
+      </ov:bt:ShortStrings>
+      <ov:bt:LongStrings>
+        <ov:bt:String id="residTaskPaneDescription" DefaultValue="Suivez vos objectifs de mots ou de caractères directement depuis Word."/>
+      </ov:bt:LongStrings>
+    </ov:Resources>
+  </VersionOverrides>
+</OfficeApp>

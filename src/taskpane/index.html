@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Objectifs WordCount</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  </head>
+  <body class="theme">
+    <header class="header">
+      <h1>Objectifs d'écriture</h1>
+      <p>Suivez vos objectifs de mots ou caractères pour chaque document.</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Configuration des objectifs</h2>
+        <form id="goal-form">
+          <div class="field-group">
+            <label for="mode-select">Unité de suivi</label>
+            <select id="mode-select">
+              <option value="words">Mots</option>
+              <option value="characters">Caractères</option>
+            </select>
+          </div>
+          <div class="grid">
+            <label>Objectif quotidien
+              <input type="number" id="daily-goal" min="0" placeholder="Ex. 1500" />
+            </label>
+            <label>Objectif hebdomadaire
+              <input type="number" id="weekly-goal" min="0" placeholder="Ex. 7500" />
+            </label>
+            <label>Objectif projet
+              <input type="number" id="project-goal" min="0" placeholder="Ex. 60000" />
+            </label>
+            <label>Nom du projet
+              <input type="text" id="project-name" placeholder="Roman policier" />
+            </label>
+          </div>
+          <div class="toggles">
+            <label><input type="checkbox" id="sound-enabled" checked /> Alertes sonores</label>
+            <label><input type="checkbox" id="notif-enabled" checked /> Notifications visuelles</label>
+          </div>
+          <button type="submit" class="primary">Sauvegarder</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Progression du document</h2>
+        <div class="actions">
+          <button id="refresh-count" class="secondary">Actualiser depuis le document</button>
+          <div class="inline-input">
+            <label for="manual-count">Entrée manuelle</label>
+            <input type="number" id="manual-count" min="0" />
+          </div>
+          <button id="save-progress" class="primary">Enregistrer la progression</button>
+        </div>
+        <div id="current-stats" class="stats"></div>
+        <div id="alert-area" role="alert" class="hidden"></div>
+      </section>
+
+      <section class="card">
+        <h2>Calendrier</h2>
+        <div class="calendar-controls">
+          <button id="prev-month" aria-label="Mois précédent">◀</button>
+          <h3 id="calendar-title"></h3>
+          <button id="next-month" aria-label="Mois suivant">▶</button>
+        </div>
+        <div class="calendar-legend">
+          <span><span class="dot success"></span> Objectif atteint</span>
+          <span><span class="dot partial"></span> Proche de l'objectif</span>
+          <span><span class="dot miss"></span> Objectif manqué</span>
+          <span><span class="dot empty"></span> Pas de données</span>
+        </div>
+        <div id="calendar-grid" class="calendar-grid"></div>
+      </section>
+
+      <section class="card">
+        <h2>Statistiques</h2>
+        <div id="stats-summary" class="stats"></div>
+      </section>
+    </main>
+
+    <audio id="goal-audio" preload="auto">
+      <source src="data:audio/wav;base64,UklGRjQAAABXQVZFZm10IBAAAAABAAEAESsAABErAAABAAgAZGF0YUQAAAAA/////wAAAP///wAAAP///wAAAP///wAAAP///wAAAP///wAAAP///wAAAP///wAAAP///wAAAP///wAA" type="audio/wav" />
+    </audio>
+
+    <template id="calendar-day-template">
+      <div class="day">
+        <span class="date"></span>
+        <span class="value"></span>
+      </div>
+    </template>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
